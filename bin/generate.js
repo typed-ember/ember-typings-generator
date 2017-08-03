@@ -149,7 +149,8 @@ class Klass {
     let namespace = Namespace.for(names[0], { autocreate: true });
 
     if (namespace.classes.has(names[1])) {
-      throw `Class already exists; name=${fullName}`;
+      console.warn(`Class already exists; name=${fullName}`);
+      return;
     }
 
     let klass = new Klass(names[1], data);
@@ -498,13 +499,19 @@ for (let name in docs.classes) {
 
   // Initialize the Klass
   let klass = Klass.create(name, docs.classes[name]);
-  classes.push(klass);
+  if (klass) {
+    classes.push(klass);
+  }
 }
 
 docs.classitems.forEach(data => {
   if (ignoreItem(data.class)) { return; }
 
   let klass = Klass.find(data.class);
+  if (!klass) {
+    console.warn(`Klass not found for ${data.class}`);
+    return;
+  }
 
   // If no name exists, it's bad data
   if (data.name && (data.itemtype === 'method' || data.itemtype === 'property')) {
@@ -527,7 +534,9 @@ const ADDITIONAL_CLASSES = [
 ADDITIONAL_CLASSES.forEach(klassName => {
   // FIXME: Don't actually export these classes from the module
   let klass = Klass.create(klassName, { name: klassName });
-  classes.push(klass);
+  if (klass) {
+    classes.push(klass);
+  }
 });
 
 // Do this after all data has been loaded from the JSON
