@@ -324,7 +324,7 @@ class ClassItem {
     this.data = data;
     this.name = data.name;
     this.klass = klass;
-    this.itemType = data.itemtype;
+    this.itemType = data.itemtype === 'event' ? 'method' : data.itemtype;
     this.type = data.type ? convertType(data.type, this.klass.fullName) : 'any';
     this.static = !!data.static;
     this.description = data.description;
@@ -514,7 +514,7 @@ docs.classitems.forEach(data => {
   }
 
   // If no name exists, it's bad data
-  if (data.name && (data.itemtype === 'method' || data.itemtype === 'property')) {
+  if (data.name && (data.itemtype === 'method' || data.itemtype === 'property' || data.itemtype === 'event')) {
     let item = new ClassItem(data, klass);
     if (klass.items.has(item.key)) {
       console.warn(`Duplicate item for klass; klass=${klass.fullName}, item=${item.key}`);
