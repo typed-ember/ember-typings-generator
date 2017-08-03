@@ -2,7 +2,10 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "out"
+    "outDir": "out",
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules",
