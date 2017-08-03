@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "ts-node": "^0.7.1",
-    "tslint": "^3.7.0",
+    "tslint": "^5.5.0",
     "tslint-config-typings": "^0.2.0",
     "typescript": "^1.8.9",
     "typings": "^0.7.11"
