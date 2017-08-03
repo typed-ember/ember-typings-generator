@@ -386,7 +386,7 @@ class ClassItem {
         str += 'function ';
       } else {
         // Property
-        str += 'var ';
+        str += 'const ';
       }
     } else if (this.static) {
       str += 'static ';
