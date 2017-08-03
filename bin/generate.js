@@ -316,7 +316,7 @@ function convertType(type, relativeBase) {
 }
 
 function abbreviateDescription(str) {
-   return str.split('\n\n')[0].replace(/\s*\n\s*/g, ' ');
+   return str.split('\n\n')[0].replace(/\s*\n\s*/g, '\n * ');
 }
 
 class ClassItem {
