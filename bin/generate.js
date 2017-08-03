@@ -383,10 +383,10 @@ class ClassItem {
     if (this.klass.isNamespace && !this.klass.isTrueClass) {
       // REVIEW: Should we expect these items to be marked as static?
       if (this.itemType === 'method') {
-        str += 'export function ';
+        str += 'function ';
       } else {
         // Property
-        str += 'export var ';
+        str += 'var ';
       }
     } else if (this.static) {
       str += 'static ';
@@ -565,8 +565,8 @@ function writeNamespace(wstream, namespace, prefix) {
   let childPrefix = namespace.root ? '' : prefix + '  ';
 
   if (!namespace.root) {
-    let declareExport = (prefix === '') ? 'declare' : 'export';
-    wstream.write(`${prefix}${declareExport} namespace ${namespace.name} {\n`);
+    let declarePrefix = (prefix === '') ? 'declare ' : '';
+    wstream.write(`${prefix}${declarePrefix}namespace ${namespace.name} {\n`);
 
     let selfClass = namespace.parent.classes.get(namespace.name);
     if (selfClass && !selfClass.isTrueClass) {
@@ -577,11 +577,11 @@ function writeNamespace(wstream, namespace, prefix) {
   namespace.namespaces.forEach(ns => writeNamespace(wstream, ns, childPrefix));
   namespace.classes.forEach(klass => {
     if (klass.isNamespace && !klass.isTrueClass) { return; }
-    let declareExport = (childPrefix === '') ? 'declare' : 'export';
+    let declarePrefix = (childPrefix === '') ? 'declare ' : '';
     if (klass.docs) {
       wstream.write(prefixLines(klass.docs, childPrefix)+'\n');
     }
-    wstream.write(`${childPrefix}${declareExport} ${klass.declaration} {\n`);
+    wstream.write(`${childPrefix}${declarePrefix}${klass.declaration} {\n`);
     writeItems(wstream, klass, childPrefix+'  ');
     wstream.write(`${childPrefix}}\n`);
   });
