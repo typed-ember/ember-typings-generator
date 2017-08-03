@@ -348,6 +348,11 @@ class ClassItem {
       // HAX
       this.returnType = this.klass.name;
     }
+
+    if (!this.returnType) {
+      this.returnType = data.itemtype === 'event' ? 'void' : 'any';
+      console.warn(`No return type for ${this.klass.name}.${this.name}; using: ${this.returnType}`);
+    }
   }
 
   get key() {
