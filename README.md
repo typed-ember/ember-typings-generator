@@ -11,18 +11,11 @@ ember-typings-generator INPUT [OUTPUT=index.d.ts]
 
 ## Contributing
 ```sh
-# Fork this repo
-npm install
-
-# Update the ember repo
-npm run update [-- --branch=TAG]
-
-# Build index.d.ts
-npm build
-
-# Run tests against built file
-npm test
+yarn
+yarn run update -- --branch=TAG  # e.g. --branch=2.14.1
+yarn run build
 ```
+Where TAG is a tag from https://github.com/components/ember/tags
 
 ## To Do
 
