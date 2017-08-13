@@ -282,6 +282,7 @@ const RETURN_TYPES = {
   'Boolean': 'boolean',
   'String': 'string',
   'Number': 'number',
+  'Integer': 'number',
   'Object': '{}',
   'Object?': '{}', // Why does this have a question mark?
   'Hash': '{}',
