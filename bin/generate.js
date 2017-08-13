@@ -295,6 +295,9 @@ function convertType(type, relativeBase) {
   // Make types in generics bar separated, not comma
   type = type.replace(/<(.+)>/, m => m.replace(/\s*,\s*/,'|'));
 
+  // Discard surrounding parenthesis
+  type = type.replace(/\((.+)\)/, '$1');
+
   let curlies = type.match(/^\{(.+)\}/);
   if (curlies) {
     type = curlies[1];
