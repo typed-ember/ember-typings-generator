@@ -7,7 +7,7 @@
     "ember-typings-generator": "./bin/generate.js"
   },
   "scripts": {
-    "update": "mkdir source && cd source && curl -O http://builds.emberjs.com/tags/v2.14.1/ember-docs.json && curl -O http://builds.emberjs.com/tags/v2.14.1/ember-data-docs.json",
+    "update": "mkdir -p source && cd source && curl -O http://builds.emberjs.com/tags/v2.16.2/ember-docs.json && curl -O http://builds.emberjs.com/tags/v2.16.0/ember-data-docs.json",
     "build": "./bin/generate.js",
     "lint": "echo linting... && tslint \"**/*.ts\" -e \"node_modules/**\" -e \"typings/**\"",
     "test": "npm run lint",
